@@ -27,6 +27,38 @@ Sample Argo CD GitOps repository using the app-of-apps pattern and Kustomize ove
 
 3. In Argo CD, sync the `root-dev` application. Argo CD will then create and manage the `hello-app-dev` child application.
 
+## Local Access
+
+The sample workload exposes a `ClusterIP` service, so it is reachable inside the cluster only. For local testing, port-forward the service:
+
+```sh
+./scripts/port-forward-hello-app.sh
+```
+
+Then open:
+
+```text
+http://localhost:8080
+```
+
+Optional overrides:
+
+```sh
+LOCAL_PORT=8081 ./scripts/port-forward-hello-app.sh
+```
+
+## Private GHCR Image Pull Secret
+
+If you deploy a private image from GitHub Container Registry, create a Kubernetes image pull secret before syncing the workload:
+
+```sh
+cp scripts/ghcr-secret.env.example.sh scripts/ghcr-secret.env.sh
+source scripts/ghcr-secret.env.sh
+./scripts/create-ghcr-pull-secret.sh
+```
+
+Required environment variables are documented in [scripts/ghcr-secret.env.example.sh](/home/dgkim/git-dgkim-lab/kube-hello-gitops/scripts/ghcr-secret.env.example.sh:1). The script creates or updates a `docker-registry` secret in the target namespace without storing the token in Git.
+
 ## Expected Result
 
 After sync, Argo CD deploys the `hello-app` sample workload into the `hello-dev` namespace. The workload exposes a ClusterIP service on port `80` that targets the container on port `8080`.
