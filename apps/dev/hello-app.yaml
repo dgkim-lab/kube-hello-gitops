@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-app-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:dgkim-lab/kube-hello-gitops.git
+    targetRevision: HEAD
+    path: workloads/hello-app/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hello-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
