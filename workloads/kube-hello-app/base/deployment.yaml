@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-hello-app
+  labels:
+    app: kube-hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-hello-app
+  template:
+    metadata:
+      labels:
+        app: kube-hello-app
+    spec:
+      serviceAccountName: kube-hello-app
+      containers:
+        - name: kube-hello-app
+          image: ghcr.io/dgkim-lab/kube-hello-app:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
