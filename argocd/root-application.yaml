@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:dgkim-lab/kube-hello-gitops.git
+    repoURL: https://github.com/dgkim-lab/kube-hello-gitops.git
     targetRevision: HEAD
     path: apps/dev
     directory:
