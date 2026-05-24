@@ -31,7 +31,7 @@ Sample Argo CD GitOps repository using the app-of-apps pattern and Kustomize ove
 
 ## Local Access
 
-Both workloads expose `ClusterIP` services, so they are reachable inside the cluster only. For local testing, port-forward either service.
+Both workloads expose `ClusterIP` services. For local testing, port-forward either service.
 
 Sample echo app:
 
@@ -62,6 +62,24 @@ Optional overrides for either script:
 ```sh
 LOCAL_PORT=8081 ./scripts/port-forward-hello-app.sh
 ```
+
+## External Access With k3s Traefik
+
+The `kube-hello-app` workload includes an Ingress for k3s' default Traefik controller. After Argo CD syncs `kube-hello-app-dev`, open the app from a machine that can reach the k3s node:
+
+```text
+http://<k3s-machine-ip>/
+```
+
+Useful checks:
+
+```sh
+kubectl -n kube-system get pods | grep traefik
+kubectl -n hello-dev get svc kube-hello-app
+kubectl -n hello-dev get ingress kube-hello-app
+```
+
+If the page does not load, confirm that the k3s machine is reachable from your computer and that port `80` is open.
 
 ## Private GHCR Image Pull Secret
 
