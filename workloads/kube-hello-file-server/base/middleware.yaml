@@ -4,6 +4,6 @@ metadata:
   name: kube-hello-file-server-root-redirect
 spec:
   redirectRegex:
-    regex: ^(https?)://file-server\\.k3s\\.dgkim\\.net/$
+    regex: ^(https?)://file-server\.k3s\.dgkim\.net/$
     replacement: ${1}://file-server.k3s.dgkim.net/files
     permanent: true

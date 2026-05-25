@@ -1,9 +1,0 @@
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: kube-hello-file-server-files-test-redirect
-spec:
-  redirectRegex:
-    regex: ^(https?)://([^/]+)/files-test$
-    replacement: ${1}://${2}/files
-    permanent: true
