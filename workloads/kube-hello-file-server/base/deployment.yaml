@@ -29,13 +29,13 @@ spec:
               mountPath: /data
           readinessProbe:
             httpGet:
-              path: /
+              path: /readyz
               port: 3000
             initialDelaySeconds: 2
             periodSeconds: 5
           livenessProbe:
             httpGet:
-              path: /
+              path: /readyz
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 10

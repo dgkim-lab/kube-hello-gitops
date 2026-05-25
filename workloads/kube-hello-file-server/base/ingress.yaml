@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kube-hello-file-server
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: hello-dev-kube-hello-file-server-root-redirect@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
