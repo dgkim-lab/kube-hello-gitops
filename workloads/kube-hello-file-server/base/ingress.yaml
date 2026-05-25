@@ -1,26 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kube-hello-app
+  name: kube-hello-file-server
 spec:
   ingressClassName: traefik
   rules:
     - http:
         paths:
-          - path: /
+          - path: /files
             pathType: Prefix
             backend:
               service:
-                name: kube-hello-app
+                name: kube-hello-file-server
                 port:
                   number: 80
-    - host: hello.k3s.dgkim.net
+    - host: file-server.k3s.dgkim.net
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kube-hello-app
+                name: kube-hello-file-server
                 port:
                   number: 80

@@ -18,6 +18,9 @@ spec:
       containers:
         - name: kube-hello-file-server
           image: ghcr.io/dgkim-lab/kube-hello-file-server:latest
+          env:
+            - name: BASE_PATH
+              value: /files
           ports:
             - containerPort: 3000
               name: http
