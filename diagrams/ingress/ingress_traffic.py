@@ -1,4 +1,4 @@
-"""Simplified Kubernetes Ingress traffic path.
+"""Current Traefik-backed ingress traffic paths.
 
 Install dependencies:
     pip install diagrams
@@ -30,25 +30,43 @@ graph_attr = {
     "fontsize": "16",
     "pad": "0.4",
     "rankdir": "LR",
+    "splines": "polyline",
 }
 
 
 with Diagram(
-    "Ingress Traffic Path",
+    "Current Ingress Traffic Paths",
     filename="diagrams/ingress/ingress_traffic",
     show=True,
     direction="LR",
     graph_attr=graph_attr,
 ):
-    user = Users("Browser\nhttp://192.168.1.26/")
+    app_user = Users("Browser\nhello.k3s.dgkim.net\nor /")
+    file_user = Users("Browser\nfile-server.k3s.dgkim.net")
 
     with Cluster("k3s cluster"):
         traefik = Traefik("Traefik\nIngress Controller")
-        ingress = Ingress("Ingress\n/kube-hello-app")
-        service = Service("Service\nkube-hello-app:80")
-        pod = Pod("Pod\ncontainer:3000")
 
-    user >> Edge(label="HTTP :80") >> traefik
-    traefik >> Edge(label="route rule") >> ingress
-    ingress >> Edge(label="backend") >> service
-    service >> Edge(label="targetPort 3000") >> pod
+        with Cluster("hello-dev namespace"):
+            app_ingress = Ingress("Ingress\nkube-hello-app\n/ and hello.k3s.dgkim.net")
+            app_service = Service("Service\nkube-hello-app:80")
+            app_pod = Pod("Pod\nkube-hello-app\ncontainer:3000")
+
+            file_ingress = Ingress(
+                "Ingress\nkube-hello-file-server\n/files and file-server.k3s.dgkim.net"
+            )
+            redirect = Ingress("Traefik Middleware\n/ -> /files redirect")
+            file_service = Service("Service\nkube-hello-file-server:80")
+            file_pod = Pod("Pod\nkube-hello-file-server\ncontainer:3000")
+
+    app_user >> Edge(label="HTTP :80") >> traefik
+    file_user >> Edge(label="HTTP :80") >> traefik
+
+    traefik >> Edge(label="route / host rule") >> app_ingress
+    app_ingress >> Edge(label="backend") >> app_service
+    app_service >> Edge(label="targetPort 3000") >> app_pod
+
+    traefik >> Edge(label="route /files or host rule") >> file_ingress
+    file_ingress >> Edge(label="middleware for host root") >> redirect
+    file_ingress >> Edge(label="backend") >> file_service
+    file_service >> Edge(label="targetPort 3000") >> file_pod
