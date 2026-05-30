@@ -6,6 +6,7 @@ Sample Argo CD GitOps repository using the app-of-apps pattern and Kustomize ove
 
 - `argocd/root-application.yaml`: bootstrap Argo CD `Application`
 - `apps/dev/`: child Argo CD applications for the `dev` environment
+- `infrastructure/`: cluster add-ons and shared infrastructure manifests
 - `workloads/hello-app/base/`: shared Kubernetes manifests
 - `workloads/kube-hello-app/base/`: manifests for the Node.js app published to GHCR
 - `workloads/hello-app/overlays/dev/`: environment-specific Kustomize overlay
@@ -94,6 +95,12 @@ source scripts/ghcr-secret.env.sh
 Required environment variables are documented in [scripts/ghcr-secret.env.example.sh](/home/dgkim/git-dgkim-lab/kube-hello-gitops/scripts/ghcr-secret.env.example.sh:1). The script creates or updates a `docker-registry` secret in the target namespace without storing the token in Git.
 
 `kube-hello-app` expects that secret to be named `ghcr-creds` in the `hello-dev` namespace. Its `ServiceAccount` references that secret so Kubernetes can pull `ghcr.io/dgkim-lab/kube-hello-app:latest` when the package is private.
+
+## cert-manager Route53 DNS-01
+
+cert-manager is installed as a GitOps-managed Argo CD application. Route53 credentials are created manually and kept out of Git.
+
+See [cert-manager with Route53 DNS-01](docs/cert-manager-route53.md).
 
 ## Expected Result
 
