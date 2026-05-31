@@ -21,6 +21,8 @@ Sample Argo CD GitOps repository using the app-of-apps pattern and Kustomize ove
 
 ## Bootstrap
 
+For a clean cluster setup including LDAP and manual secrets, follow [Fresh Install](FRESH-INSTALL.md).
+
 1. Confirm the `repoURL` values in `argocd/root-application.yaml` and `apps/dev/hello-app.yaml` match the repository URL Argo CD can access.
 2. Apply the root application:
 
@@ -101,6 +103,12 @@ Required environment variables are documented in [scripts/ghcr-secret.env.exampl
 cert-manager is installed as a GitOps-managed Argo CD application. Route53 credentials are created manually and kept out of Git.
 
 See [cert-manager with Route53 DNS-01](docs/cert-manager-route53.md).
+
+## Argo CD LDAP Authentication
+
+Argo CD LDAP authentication is configured through the bundled Dex server with anonymous LDAP search. Local LDAP hostname and base DN values are applied manually and kept out of Git.
+
+See [Argo CD LDAP Authentication](docs/argocd-ldap-auth.md).
 
 ## Expected Result
 
