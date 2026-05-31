@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - keycloak.k3s.dgkim.net
+      secretName: keycloak-tls
+  rules:
+    - host: keycloak.k3s.dgkim.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  number: 80
