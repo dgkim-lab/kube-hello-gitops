@@ -32,6 +32,17 @@ For a clean cluster setup including LDAP and manual secrets, follow [Fresh Insta
 
 3. In Argo CD, sync the `root-dev` application. Argo CD will then create and manage the `hello-app-dev` and `kube-hello-app-dev` child applications.
 
+## Managed Applications
+
+The `root-dev` app manages these child applications:
+
+- Workloads: `hello-app-dev`, `kube-hello-app-dev`, `kube-hello-file-server-dev`
+- Argo CD access: `argocd-ingress`
+- Certificates: `cert-manager`, `cert-manager-config`
+- Progressive delivery: `argo-rollouts`
+- Service mesh: `istio-base`, `istiod`, `istio-ingressgateway`
+- Observability: `kiali`, `kiali-ingress`, `prometheus`
+
 ## Local Access
 
 Both workloads expose `ClusterIP` services. For local testing, port-forward either service.

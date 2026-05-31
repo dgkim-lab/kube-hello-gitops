@@ -16,6 +16,9 @@ spec:
       valuesObject:
         auth:
           strategy: anonymous
+        external_services:
+          prometheus:
+            url: http://prometheus-server.istio-system:9090
         server:
           web_root: /
   destination:
