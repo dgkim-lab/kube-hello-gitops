@@ -23,7 +23,7 @@ spec:
       serviceAccountName: kube-hello-app
       containers:
         - name: kube-hello-app
-          image: ghcr.io/dgkim-lab/kube-hello-app:v0.0.2
+          image: ghcr.io/dgkim-lab/kube-hello-app:v0.0.1
           ports:
             - containerPort: 3000
               name: http
