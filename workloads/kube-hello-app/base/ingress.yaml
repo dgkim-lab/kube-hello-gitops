@@ -4,6 +4,10 @@ metadata:
   name: kube-hello-app
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+        - hello.k3s.dgkim.net
+      secretName: kube-hello-app-tls
   rules:
     - http:
         paths:
