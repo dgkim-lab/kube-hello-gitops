@@ -5,4 +5,5 @@ resources:
   - serviceaccount.yaml
   - rollout.yaml
   - service.yaml
+  - service-preview.yaml
   - ingress.yaml

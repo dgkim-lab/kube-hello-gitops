@@ -12,9 +12,23 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: hello-dev
+  ignoreDifferences:
+    - group: ""
+      kind: Service
+      name: kube-hello-app
+      namespace: hello-dev
+      jsonPointers:
+        - /spec/selector
+    - group: ""
+      kind: Service
+      name: kube-hello-app-preview
+      namespace: hello-dev
+      jsonPointers:
+        - /spec/selector
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true

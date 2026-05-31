@@ -10,11 +10,11 @@ spec:
     matchLabels:
       app: kube-hello-app
   strategy:
-    canary:
-      steps:
-        - setWeight: 20
-        - pause: {}
-        - setWeight: 100
+    blueGreen:
+      activeService: kube-hello-app
+      previewService: kube-hello-app-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
@@ -23,7 +23,7 @@ spec:
       serviceAccountName: kube-hello-app
       containers:
         - name: kube-hello-app
-          image: ghcr.io/dgkim-lab/kube-hello-app:v0.0.1
+          image: ghcr.io/dgkim-lab/kube-hello-app:v0.0.2
           ports:
             - containerPort: 3000
               name: http
