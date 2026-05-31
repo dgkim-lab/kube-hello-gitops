@@ -13,6 +13,18 @@ spec:
     targetRevision: 1.30.0
     helm:
       releaseName: istio-ingressgateway
+      valuesObject:
+        service:
+          type: LoadBalancer
+          ports:
+            - name: status-port
+              port: 15021
+              targetPort: 15021
+              protocol: TCP
+            - name: http2
+              port: 10080
+              targetPort: 80
+              protocol: TCP
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
