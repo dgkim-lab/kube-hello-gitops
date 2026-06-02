@@ -13,6 +13,16 @@ spec:
     targetRevision: 1.30.0
     helm:
       releaseName: istiod
+      valuesObject:
+        meshConfig:
+          enableTracing: true
+          defaultConfig:
+            tracing: {}
+          extensionProviders:
+            - name: jaeger
+              opentelemetry:
+                service: jaeger.jaeger.svc.cluster.local
+                port: 4317
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
