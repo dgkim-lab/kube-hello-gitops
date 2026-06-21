@@ -3,7 +3,7 @@ set -euo pipefail
 
 NAMESPACE="${ARGOCD_NAMESPACE:-argocd}"
 
-argocd_url="${ARGOCD_URL:-https://argocd.k3s.dgkim.net}"
+argocd_url="${ARGOCD_URL:-https://argocd.k3s-test.dgkim.net}"
 ldap_host="${LDAP_HOST:-ldap.dgkim.net:389}"
 ldap_insecure_no_ssl="${LDAP_INSECURE_NO_SSL:-true}"
 ldap_user_base_dn="${LDAP_USER_BASE_DN:-ou=people,dc=dgkim,dc=net}"

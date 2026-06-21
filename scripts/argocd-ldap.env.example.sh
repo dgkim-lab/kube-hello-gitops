@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Argo CD externally reachable URL.
-export ARGOCD_URL="https://argocd.k3s.dgkim.net"
+export ARGOCD_URL="https://argocd.k3s-test.dgkim.net"
 
 # LDAP endpoint reachable from the argocd-dex-server pod.
 export LDAP_HOST="ldap.dgkim.net:389"
@@ -32,8 +32,8 @@ export ARGOCD_ADMIN_GROUP="argocd-admins"
 export KEYCLOAK_ENABLED="false"
 
 # Keycloak realm issuer URL. Example:
-# https://keycloak.k3s.dgkim.net/realms/master
-export KEYCLOAK_ISSUER="https://keycloak.k3s.dgkim.net/realms/YOUR_REALM"
+# https://keycloak.k3s-test.dgkim.net/realms/master
+export KEYCLOAK_ISSUER="https://keycloak.k3s-test.dgkim.net/realms/YOUR_REALM"
 
 # OpenID Connect client created in Keycloak for Argo CD / Dex.
 export KEYCLOAK_CLIENT_ID="argocd"

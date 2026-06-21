@@ -57,7 +57,7 @@ spec:
                   name: dev-db-keycloak-postgres-secret
                   key: POSTGRES_PASSWORD
             - name: KC_HOSTNAME
-              value: keycloak.k3s.dgkim.net
+              value: keycloak.k3s-test.dgkim.net
             - name: KC_PROXY_HEADERS
               value: xforwarded
             - name: KC_HTTP_ENABLED

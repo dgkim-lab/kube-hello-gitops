@@ -9,4 +9,4 @@ spec:
     name: letsencrypt-route53-prod
     kind: ClusterIssuer
   dnsNames:
-    - kiali.k3s.dgkim.net
+    - kiali.k3s-test.dgkim.net

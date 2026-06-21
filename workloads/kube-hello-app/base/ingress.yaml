@@ -6,7 +6,7 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - hello.k3s.dgkim.net
+        - hello.k3s-test.dgkim.net
       secretName: kube-hello-app-tls
   rules:
     - http:
@@ -18,7 +18,7 @@ spec:
                 name: kube-hello-app
                 port:
                   number: 80
-    - host: hello.k3s.dgkim.net
+    - host: hello.k3s-test.dgkim.net
       http:
         paths:
           - path: /

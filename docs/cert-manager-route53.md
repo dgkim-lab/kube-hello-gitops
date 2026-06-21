@@ -77,5 +77,5 @@ kubectl get pods -n cert-manager
 kubectl get clusterissuer letsencrypt-route53-prod
 kubectl -n argocd describe certificate argocd-server-tls
 kubectl -n argocd get secret argocd-server-tls
-curl -Iv https://argocd.k3s.dgkim.net
+curl -Iv https://argocd.k3s-test.dgkim.net
 ```

@@ -8,4 +8,4 @@ spec:
     name: letsencrypt-route53-prod
     kind: ClusterIssuer
   dnsNames:
-    - hello.k3s.dgkim.net
+    - hello.k3s-test.dgkim.net

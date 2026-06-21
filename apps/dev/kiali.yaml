@@ -23,7 +23,7 @@ spec:
             enabled: true
             provider: jaeger
             internal_url: http://jaeger.jaeger:16686
-            external_url: https://jaeger.k3s.dgkim.net
+            external_url: https://jaeger.k3s-test.dgkim.net
             use_grpc: false
         server:
           web_root: /

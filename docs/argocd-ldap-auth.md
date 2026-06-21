@@ -39,7 +39,7 @@ To enable Keycloak login, set these values before running the script:
 
 ```shell
 export KEYCLOAK_ENABLED="true"
-export KEYCLOAK_ISSUER="https://keycloak.k3s.dgkim.net/realms/YOUR_REALM"
+export KEYCLOAK_ISSUER="https://keycloak.k3s-test.dgkim.net/realms/YOUR_REALM"
 export KEYCLOAK_CLIENT_ID="argocd"
 export KEYCLOAK_CLIENT_SECRET="..."
 export KEYCLOAK_ADMIN_GROUP="argocd-admins"
@@ -48,7 +48,7 @@ export KEYCLOAK_ADMIN_GROUP="argocd-admins"
 The Keycloak client redirect URI for Argo CD's bundled Dex server should be:
 
 ```text
-https://argocd.k3s.dgkim.net/api/dex/callback
+https://argocd.k3s-test.dgkim.net/api/dex/callback
 ```
 
 The script creates or updates:
@@ -76,7 +76,7 @@ kubectl -n argocd rollout restart deployment/argocd-dex-server
 Open:
 
 ```text
-https://argocd.k3s.dgkim.net
+https://argocd.k3s-test.dgkim.net
 ```
 
 Use the `LDAP` or `Keycloak` login option. Members of the configured LDAP or

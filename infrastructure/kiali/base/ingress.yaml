@@ -7,10 +7,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - kiali.k3s.dgkim.net
+        - kiali.k3s-test.dgkim.net
       secretName: kiali-tls
   rules:
-    - host: kiali.k3s.dgkim.net
+    - host: kiali.k3s-test.dgkim.net
       http:
         paths:
           - path: /

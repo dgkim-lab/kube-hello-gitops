@@ -41,19 +41,19 @@ with Diagram(
     direction="LR",
     graph_attr=graph_attr,
 ):
-    app_user = Users("Browser\nhello.k3s.dgkim.net\nor /")
-    file_user = Users("Browser\nfile-server.k3s.dgkim.net")
+    app_user = Users("Browser\nhello.k3s-test.dgkim.net\nor /")
+    file_user = Users("Browser\nfile-server.k3s-test.dgkim.net")
 
     with Cluster("k3s cluster"):
         traefik = Traefik("Traefik\nIngress Controller")
 
         with Cluster("hello-dev namespace"):
-            app_ingress = Ingress("Ingress\nkube-hello-app\n/ and hello.k3s.dgkim.net")
+            app_ingress = Ingress("Ingress\nkube-hello-app\n/ and hello.k3s-test.dgkim.net")
             app_service = Service("Service\nkube-hello-app:80")
             app_pod = Pod("Pod\nkube-hello-app\ncontainer:3000")
 
             file_ingress = Ingress(
-                "Ingress\nkube-hello-file-server\n/files and file-server.k3s.dgkim.net"
+                "Ingress\nkube-hello-file-server\n/files and file-server.k3s-test.dgkim.net"
             )
             redirect = Ingress("Traefik Middleware\n/ -> /files redirect")
             file_service = Service("Service\nkube-hello-file-server:80")

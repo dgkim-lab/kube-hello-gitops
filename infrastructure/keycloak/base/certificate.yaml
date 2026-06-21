@@ -8,4 +8,4 @@ spec:
     name: letsencrypt-route53-prod
     kind: ClusterIssuer
   dnsNames:
-    - keycloak.k3s.dgkim.net
+    - keycloak.k3s-test.dgkim.net

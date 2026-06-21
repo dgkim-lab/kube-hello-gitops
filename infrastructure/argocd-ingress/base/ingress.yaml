@@ -7,10 +7,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - argocd.k3s.dgkim.net
+        - argocd.k3s-test.dgkim.net
       secretName: argocd-server-tls
   rules:
-    - host: argocd.k3s.dgkim.net
+    - host: argocd.k3s-test.dgkim.net
       http:
         paths:
           - path: /

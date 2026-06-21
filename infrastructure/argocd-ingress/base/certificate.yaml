@@ -9,4 +9,4 @@ spec:
     name: letsencrypt-route53-prod
     kind: ClusterIssuer
   dnsNames:
-    - argocd.k3s.dgkim.net
+    - argocd.k3s-test.dgkim.net

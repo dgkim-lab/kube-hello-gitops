@@ -107,7 +107,7 @@ kubectl get applications -n argocd
 Verify Argo CD:
 
 ```text
-https://argocd.k3s.dgkim.net
+https://argocd.k3s-test.dgkim.net
 ```
 
 Use the LDAP login option. Members of the configured LDAP admin group receive
@@ -120,5 +120,5 @@ kubectl get pods -A
 kubectl get ingress -A
 ```
 
-Local-only DNS such as `argocd.k3s.dgkim.net -> 192.168.1.26` must already be
+Local-only DNS such as `argocd.k3s-test.dgkim.net -> 192.168.1.26` must already be
 configured before browser access works.
